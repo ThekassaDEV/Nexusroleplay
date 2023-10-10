@@ -1,6 +1,3 @@
------------------For support, scripts, and more----------------
---------------- https://discord.gg/wasabiscripts  -------------
----------------------------------------------------------------
 ESX = exports["es_extended"]:getSharedObject()
 isDead, disableKeys, inMenu, stretcher, stretcherMoving, isBusy = nil, nil, nil, nil, nil, nil
 local playerLoaded, injury
@@ -164,7 +161,7 @@ AddEventHandler('esx:onPlayerDeath', function(data)
     for k,v in pairs(DeathReasons) do
         for i=1, #v do
             if data.deathCause == v[i] then
-                injury = tostring(k) -- Not sure maybe will return string anyway
+                injury = tostring(k) 
                 break
             end
         end
@@ -176,7 +173,7 @@ end)
 -- I am monster thread
 CreateThread(function()
     while ESX.PlayerData.job == nil do
-        Wait(1000) -- Necessary for some of the loops that use job check in these threads within threads.
+        Wait(1000)
     end
     for k,v in pairs(Config.Locations) do
         if v.Blip.Enabled then
@@ -573,7 +570,6 @@ AddEventHandler('wasabi_ambulance:spawnVehicle', function(data)
         local vehicle = CreateVehicle(GetHashKey(model), spawnLoc.coords.x, spawnLoc.coords.y, spawnLoc.coords.z, spawnLoc.heading, 1, 0)
         TaskWarpPedIntoVehicle(cache.ped, vehicle, -1)
         if Config.customCarlock then
-            -- Leave like this if using wasabi_carlock OR change with your own!
             local plate = GetVehicleNumberPlateText(vehicle)
             TriggerServerEvent('wasabi_carlock:addKey', plate)
         end
@@ -582,7 +578,7 @@ AddEventHandler('wasabi_ambulance:spawnVehicle', function(data)
     end
 end)
 
-AddEventHandler('wasabi_ambulance:changeClothes', function(data) -- Change with your own code here if you want?
+AddEventHandler('wasabi_ambulance:changeClothes', function(data) 
 	ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
         if data == 'civ_wear' then
             if Config.skinScript == 'appearance' then
